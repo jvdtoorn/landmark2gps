@@ -9,13 +9,12 @@ import PIL.ExifTags
 from mfcc_talkbox import mfcc
 
 def extract_metadata(im_list):
-	features = {}
-	for im_name in im_list:
-		tags = None
-		geotags = extract_exif(im_name)
-		features[im_name] = (tags, geotags)
-		
-	return features	
+    features = {}
+    for im_name in im_list:
+        tags = None
+        geotags = extract_exif(im_name)
+        features[im_name] = (tags, geotags)
+    return features
 
 def harris_features(im):
     response = cv2.cornerHarris(im, 7, 5, 0.05)
