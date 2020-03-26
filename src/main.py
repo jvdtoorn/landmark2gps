@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
 from video_tools import *
+import glob
 import feature_extraction as ft
 from scikits.talkbox.features import mfcc
 import scipy.io.wavfile as wav
@@ -12,7 +12,9 @@ if __name__ == "__main__":
 	S = 0
 	E = 3
 
-	video = '../Videos/VIDEO0191.3gp'
+	video_files = glob.glob("../queries/*.3gp")
+
+	video = video_files[0]
 
 	frame_count = get_frame_count(video) + 1
 	frame_rate = get_frame_rate(video)
