@@ -37,15 +37,19 @@ if __name__ == "__main__":
 
 		cv2.imshow('Video', frame)
 
-		kp1, des1 = orb.detectAndCompute(frame, None)			
+		start = time.time()
+		kp1, des1 = orb.detectAndCompute(frame, None)
+		end = time.time()
+		print('Keypoint calc. took {0:.2f} ms'.format((end - start) * 1000))
+
 		kp2, des2 = orb.detectAndCompute(frame, None)
 
 		start = time.time()
 		matches = matcher.match(des1, des2)
 		matches = sorted(matches, key = lambda x:x.distance)
 		end = time.time()
+		print('Keypoint match took {0:.2f} ms'.format((end - start) * 1000))
 
-		print('Total time: {0}'.format(end - start))
 	
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break
