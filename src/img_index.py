@@ -51,10 +51,11 @@ def find_pictures_rdir(dir_path):
     return files
 
 def load_img_index():
+    repo_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
     # If image index already exists, return it
-    if os.path.isfile('../index/img_index.db'):
-        with open('../index/img_index.db', 'rb') as handle:
+    if os.path.isfile(os.path.join(repo_path, 'index/img_index.db')):
+        with open(os.path.join(repo_path, 'index/img_index.db'), 'rb') as handle:
             return pickle.load(handle)
 
     # Create the image index:
@@ -62,10 +63,10 @@ def load_img_index():
     # - if image is taken at Oude Jan, Nieuwe Kerk or Raadhuis: use hardcoded coordinates
     # - otherwise, ask the user to provide GPS coordinates
     print("Please provide an image dataset.")
-    dir_path = raw_input("Directory path: ")
+    dir_path = os.path.abspath(raw_input("Directory path: "))
     while not os.path.exists(dir_path):
         print("This directory does not exist. Please check your spelling.")
-        dir_path = raw_input("Directory path: ")
+        dir_path = os.path.abspath(raw_input("Directory path: "))
     print("Indexing images...")
     img_files = find_pictures_rdir(dir_path)
     img_index = {'path': [], 'lat': [], 'long': []}
@@ -109,8 +110,8 @@ def load_img_index():
     if SKIP_UNKNOWN_GEO: bar.finish()
 
     # Store and return the image index
-    if not os.path.exists('../index'): os.makedirs('../index')
-    with open('../index/img_index.db', 'wb') as handle: pickle.dump(img_index, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    if not os.path.exists(os.path.join(repo_path, 'index')): os.makedirs(os.path.join(repo_path, 'index'))
+    with open(os.path.join(repo_path, 'index/img_index.db'), 'wb') as handle: pickle.dump(img_index, handle, protocol=pickle.HIGHEST_PROTOCOL)
     return img_index
 
 if __name__ == "__main__":

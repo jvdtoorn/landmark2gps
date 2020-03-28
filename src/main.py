@@ -8,7 +8,7 @@ from img_index import load_img_index
 from orb_index import load_orb_index
 
 # Configures the amount of frames processed from the input video
-USE_KEYPOINTS = 2
+USE_KEYPOINTS = 1
 
 def gps_str(latitude, longitude):
 	location = LatLon(latitude, longitude)
@@ -27,10 +27,10 @@ def landmark2gps():
 
 	# Ask for input video
 	print("Please provide a query video.")
-	video_path = raw_input("Video path: ")
+	video_path = os.path.abspath(raw_input("Video path: "))
 	while not os.path.isfile(video_path):
 		print("This video does not exist. Please check your spelling.")
-		video_path = raw_input("Video path: ")
+		video_path = os.path.abspath(raw_input("Video path: "))
 
 	# Calculate ORB descriptors of query video
 	orb = cv2.ORB_create(256)

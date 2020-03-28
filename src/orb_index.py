@@ -6,14 +6,15 @@ import os.path
 import cv2
 
 def load_orb_index(img_index):
+    repo_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
     # If ORB index already exists, return it
-    if os.path.isfile('../index/orb_index.db'):
-        return np.memmap('../index/orb_index.db', dtype='float32', mode='r+', shape=(len(img_index['path']), 256, 32))
+    if os.path.isfile(os.path.join(repo_path, 'index/orb_index.db')):
+        return np.memmap(os.path.join(repo_path, 'index/orb_index.db'), dtype='float32', mode='r+', shape=(len(img_index['path']), 256, 32))
 
     # Create the ORB index: for each image, calculate its ORB descriptors
     print("Creating ORB database...")
-    orb_index = np.memmap('../index/orb_index.db', dtype='float32', mode='w+', shape=(len(img_index['path']), 256, 32))
+    orb_index = np.memmap(os.path.join(repo_path, 'index/orb_index.db'), dtype='float32', mode='w+', shape=(len(img_index['path']), 256, 32))
     orb = cv2.ORB_create(256)
     bar = progressbar.ProgressBar(maxval=len(img_index['path']), widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()]).start()
     for i in range(len(img_index['path'])):

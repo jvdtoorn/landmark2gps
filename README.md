@@ -4,6 +4,16 @@ This tool derives the GPS coordinates at which a video (in Delft) was taken.
 
 It does this by extracting [ORB features](https://en.wikipedia.org/wiki/Scale-invariant_feature_transform) from the input video, and matching these to a labelled database of landmarks in Delft.
 
+## Example
+1. `new-church-delft.m4v`
+![new-church-delft.m4v](./img/new-church-delft-frame.png)
+
+2. Running the script
+![Screenshot of the script](./img/script-screenshot.png)
+
+3. Pasting `52°00'45.0612"N 4°21'39.2724"E` in Google Maps
+![New church in Google Maps](./img/new-church-gmaps.png)
+
 ## Using the tool
 1. Install dependencies: `$ pip install -r requirements.txt`
 2. Run the script: `$ python src/main.py`
