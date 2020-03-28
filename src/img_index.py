@@ -74,7 +74,7 @@ def load_img_index():
     for i in range(len(img_files)):
         if False and i > 0: print("[path: {}, lat: {}, long: {}]".format(img_index['path'][i-1], img_index['lat'][i-1], img_index['long'][i-1]))
         if SKIP_UNKNOWN_GEO: bar.update(i)
-        filename = img_files[i].split('/')[-1]
+        filename = img_files[i] #.split('/')[-1]
 
         # Try getting GPS from metadata
         lat, lon = get_meta_gps(img_files[i])
@@ -95,7 +95,7 @@ def load_img_index():
         if SKIP_UNKNOWN_GEO: continue
         # If those didn't work, ask user for the coordinates
         print("Where is the following picture taken? (see external window)")
-        print("Name: '{}'".format(filename))
+        print("Name: '{}'".format(img_files[i].split('/')[-1]))
         img = imutils.resize(cv2.cvtColor(cv2.imread(img_files[i]), cv2.COLOR_BGR2RGB), width=900)
         plt.imshow(img); plt.show(block=False); plt.pause(0.001)
         lat, lon = get_input_gps()
