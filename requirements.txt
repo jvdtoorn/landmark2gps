@@ -11,7 +11,7 @@ matplotlib==2.2.5
 # mkl-fft==1.0.15
 # mkl-random==1.1.0
 # mkl-service==2.3.0
-numpy==1.16.6
+numpy==1.22.0
 opencv-contrib-python==4.2.0.32
 opencv-python==4.2.0.32
 opencv-python-headless==4.2.0.32
