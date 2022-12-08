@@ -1,6 +1,6 @@
 aenum==2.2.3
 backports.functools-lru-cache==1.6.1
-certifi==2019.11.28
+certifi==2022.12.7
 cycler==0.10.0
 ExifRead==2.1.2
 gpsphoto==2.2.3
